@@ -1,0 +1,38 @@
+@isTest
+private class LaptopBookingHandlerTest {
+    @isTest
+    static void testSendEmailNotification() {
+        consumer__c consumer = new consumer__c(
+            Name = 'John Doe',
+            Phone_number__c = '9887346134',
+            Address__c = 'Paris, France',
+            Email__c = 'johndoe@example.com'
+        );
+        insert consumer;
+
+        Total_Laptops__c totalLaptops = new Total_Laptops__c(
+            Name = '1'
+        );
+        insert totalLaptops;
+        
+        List<Laptop_Bookings__c> lapBookings = new List<Laptop_Bookings__c>();
+        lapBookings.add(new Laptop_Bookings__c(
+            Name = 'Booking11',
+            Contact_Email__c = consumer.Email__c,  
+            consumer__c = consumer.Id,             
+            Amount__c = 900,
+            core_type__c = 'core i3',
+            Laptop_namess__c = 'Dell',
+            Total_No_Of_Laptops__c = totalLaptops.Id, 
+            how_many_months__c = '1'
+        ));
+        insert lapBookings;
+        
+        Test.startTest();
+        LaptopBookingHandler.sendEmailNotification(lapBookings);
+        Test.stopTest();
+        
+        Integer sentEmailCount = Limits.getEmailInvocations();
+        System.assertEquals(1, sentEmailCount, 'One email should have been sent.');
+    }
+}
