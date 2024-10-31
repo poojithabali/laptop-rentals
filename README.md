@@ -1,0 +1,2 @@
+Project Title:A CRM APPLICATION FOR LAPTOP RENTALS
+Project Description:This CRM Application for Laptop Rentals aims to deliver rental products directly to customers, leveraging CRM to boost customer satisfaction, streamline store operations, and increase overall productivity. Additionally, it enables effective customer outreach by using email communication to engage with identified potential customers, enhancing customer relationships and fostering loyalty.
